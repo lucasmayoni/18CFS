@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Link } from 'react-router-dom';
-import FlightSchedule from './FlightSchedule';
+import FlightSchedule from './components/FlightSchedule';
 
 
 function App() {

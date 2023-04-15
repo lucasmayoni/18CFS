@@ -1,42 +1,9 @@
-import uuid from 'react-uuid';
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { PLANES } from '../utils/planes.mock';
+import { TURNOS } from '../utils/turnos.mock'
 
-const PLANES = [
-    {
-        "id": uuid(),
-        "code": "LVS112",
-        "name": "Tecnmap P2022 Sierra"
-    }
-]
-
-const TURNOS = [
-    {
-        "id": 1,
-        "detalle": "8.30"
-    },
-    {
-        "id": 2,
-        "detalle": "10"
-    },
-    {
-        "id": 3,
-        "detalle": "11.30"
-    },
-    {
-        "id": 4,
-        "detalle": "13.30"
-    },
-    {
-        "id": 5,
-        "detalle": "15"
-    },
-    {
-        "id": 6,
-        "detalle": "16.30"
-    }
-]
 
 
 const FlightSchedule = () => {

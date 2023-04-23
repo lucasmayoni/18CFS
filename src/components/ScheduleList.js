@@ -1,26 +1,15 @@
+import { Table } from 'antd';
+const { Column } = Table;
+
 const ScheduleList = () => {
     return (
-        <div>
-            <table>
-                <tr>
-                    <th>
-                        Fecha
-                    </th>
-                    <th>
-                        Turno
-                    </th>
-                    <th>
-                        Avion
-                    </th>
-                    <th>
-                        Piloto
-                    </th>
-                    <th>
-                        Instructor
-                    </th>
-                </tr>
-            </table >
-        </div >
+        <Table>
+            <Column title="Fecha" dataIndex="age" key="age" />
+            <Column title="Turno" dataIndex="address" key="address" />
+            <Column title="Avion" dataIndex="address" key="address" />
+            <Column title="Piloto" dataIndex="address" key="address" />
+            <Column title="Instructor" dataIndex="address" key="address" />
+        </Table>
     )
 }
 

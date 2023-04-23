@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
 import { PLANES } from '../utils/planes.mock';
 import { TURNOS } from '../utils/turnos.mock'
+import { Button, Form, Select, DatePicker } from 'antd';
+import 'antd/dist/reset.css';
 
 
 
@@ -12,57 +12,58 @@ const FlightSchedule = () => {
         fecha: "",
         hora: ""
     });
-    const [startDate, setStartDate] = useState(new Date());
+    const onFinish = (formValues) => {
+        const values = {
+            ...formValues,
+            'date': formValues['date'].format('YYYY-MM-DD')
+        }
+        setRequestParams(values);
+        console.log('Success:', values);
+    };
     return (
         <div>
-            <p>This is FS</p>
-            <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    const formData = new FormData(e.target);
-                    const obj = {
-                        plane: formData.get("plane") ?? "",
-                        fecha: formData.get("date") ?? "",
-                        hora: formData.get("hour") ?? "",
-                    };
-                    setRequestParams(obj);
-                }}
+            <Form
+                name="MyForm"
+                labelCol={{ span: 8 }}
+                style={{ maxWidth: 500 }}
+                wrapperCol={{ span: 16 }}
+                onFinish={onFinish}
 
             >
-                <label htmlFor="Avion">
-                    Avion:
-                    <select id="plane" name="plane">
+                <Form.Item label="Avion" name="plane"
+                    id="plane">
+                    <Select
+                    >
                         {
                             PLANES.map((plane) => {
                                 return (
-                                    <option key={plane.id} value={plane.code}>{plane.code} - {plane.name}</option>
+                                    <Select.Option value={plane.code} key={plane.id} >{plane.code} - {plane.name}</Select.Option>
                                 )
                             })
                         }
-                    </select>
-                </label>
-                <label htmlFor="Fecha">
-                    Fecha:
-                    <DatePicker id="date" name="date" selected={startDate} onChange={(date) => setStartDate(date)} />
-                </label>
-                <label htmlFor="Hora">
-                    Turno:
-                    <select id="hour" name="hour">
+                    </Select>
+                </Form.Item>
+                <Form.Item
+                    id="date" name="date"
+                    label="Fecha:">
+                    <DatePicker />
+                </Form.Item>
+                <Form.Item
+                    id="hour" name="hour" label="Turno">
+                    <Select >
                         {
                             TURNOS.map((turno) => {
                                 return (
-                                    <option value={turno.detalle} key={turno.id}>{turno.detalle}</option>
+                                    <Select.Option value={turno.detalle} key={turno.id}>{turno.detalle}</Select.Option>
                                 )
                             })
                         }
-                    </select>
-                </label>
-                <button className="rounded px-6 py-2 color text-white hover:opacity-50 border-none bg-orange-500">
-                    Submit
-                </button>
-            </form>
+                    </Select>
+                </Form.Item>
+                <Button type='primary' htmlType='submit'>Submit</Button>
+            </Form>
             <div>
-                <p>Detalle Reserva: {requestParams.fecha} -  {requestParams.plane} - {requestParams.hora}</p>
+                {requestParams.plane} -
             </div>
         </div>
     )

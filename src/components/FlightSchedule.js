@@ -18,7 +18,6 @@ const FlightSchedule = () => {
             'date': formValues['date'].format('YYYY-MM-DD')
         }
         setRequestParams(values);
-        console.log('Success:', values);
     };
     return (
         <div>
